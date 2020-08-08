@@ -4,13 +4,19 @@ import { throwHttpError } from './errors';
 import { IncomingMessage } from 'http';
 
 export interface BeachBodyOptions {
+  /** Expected length in bytes of the content */
   length?: number;
+  /** Maximum allowed size in bytes of the content */
   limit?: string | number;
+  /**
+   * Encoding to decode the stream buffer with
+   * @default utf8
+   */
   encoding?: BufferEncoding;
 }
 
 export default async function getBody(
-  stream: Readable | IncomingMessage,
+  stream: Readable,
   { length, limit, encoding = 'utf8' }: BeachBodyOptions = {},
 ): Promise<string> {
   limit = parseBytes(limit);
@@ -67,3 +73,5 @@ export default async function getBody(
 
   return Buffer.concat(buffer, received).toString(encoding);
 }
+
+module.exports = getBody;
