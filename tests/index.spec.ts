@@ -10,7 +10,7 @@ test('default options', async () => {
 
 test('length too large', async () => {
   await expect(
-    getBody(Readable.from(''), {
+    getBody(Readable.from([]), {
       limit: 10,
       length: 11,
     }),
