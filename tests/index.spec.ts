@@ -10,7 +10,7 @@ test('default options', async () => {
 
 test('length too large', async () => {
   await expect(
-    getBody(Readable.from(''), {
+    getBody(Readable.from([]), {
       limit: 10,
       length: 11,
     }),
@@ -19,7 +19,7 @@ test('length too large', async () => {
 
 test('encoding should not be set', async () => {
   await expect(
-    getBody(Readable.from('', { encoding: 'utf-8' })),
+    getBody(Readable.from([], { encoding: 'utf-8' })),
   ).rejects.toThrow('stream encoding should not be set');
 });
 
