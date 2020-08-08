@@ -6,4 +6,6 @@
 .pnp.*
 
 dist
+coverage
+node_modules
 .eslintcache
